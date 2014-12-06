@@ -5,4 +5,4 @@ virtualenv venv
 source venv/bin/activate
 
 # Install Django and Django REST framework into the virtualenv
-pip install -r dependencies.txt
+pip install -r requirements.txt
