@@ -1,9 +1,11 @@
 # Create your views here.
 
 from models import User, Place, Hint
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from serializers import UserSerializer, PlaceSerializer, HintSerializer
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+import path_finder
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -26,3 +28,17 @@ class HintViewSet(viewsets.ModelViewSet):
     """
     queryset = Hint.objects.all()
     serializer_class = HintSerializer
+
+@api_view(['GET'])
+def next_place(request):
+    """
+    Get the next place for a user to visit
+    """
+    user = request.GET.get('user')
+    current_lat = float(request.GET.get('lat'))
+    current_lon = float(request.GET.get('lon'))
+    data = path_finder.get_next_place((current_lat, current_lon), [(0.0, 0.0)])
+    if data:
+        serializer = PlaceSerializer(data)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_204_NO_CONTENT)
