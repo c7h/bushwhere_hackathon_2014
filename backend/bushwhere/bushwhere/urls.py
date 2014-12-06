@@ -8,7 +8,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+router.register(r'players', views.PlayerViewSet)
 router.register(r'places', views.PlaceViewSet)
 
 urlpatterns = patterns('',

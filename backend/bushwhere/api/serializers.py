@@ -2,7 +2,7 @@ from models import Place, Player, Hint, Visit
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Player
         fields = ('name', 'image')
