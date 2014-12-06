@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class Places(models.Model):
+class Place(models.Model):
 	name = models.CharField(max_length=100)
 	lat = models.FloatField()
 	lon = models.FloatField()
@@ -16,5 +16,5 @@ class User(model.Model):
 
 class Hint(models.Model):
 	text = models.TextField()
-	place = models.ForeignKey(Places)
+	place = models.ForeignKey(Place)
 		
