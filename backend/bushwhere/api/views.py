@@ -1,8 +1,7 @@
 # Create your views here.
 
-from models import User, Place, Hint
-from rest_framework import viewsets, status
 from models import Player, Place, Hint
+from rest_framework import viewsets, status
 from serializers import UserSerializer, PlaceSerializer, HintSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
