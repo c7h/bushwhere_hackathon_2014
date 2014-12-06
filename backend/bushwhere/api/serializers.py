@@ -1,11 +1,11 @@
-from models import Place, User, Hint
+from models import Place, Player, Hint
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('name')
+        model = Player
+        fields = ('name', 'image')
 
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):

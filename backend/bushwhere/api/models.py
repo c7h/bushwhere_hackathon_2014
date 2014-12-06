@@ -4,17 +4,19 @@ from django.db import models
 
 
 class Place(models.Model):
-	name = models.CharField(max_length=100)
-	lat = models.FloatField()
-	lon = models.FloatField()
+    name = models.CharField(max_length=100)
+    lat = models.FloatField()
+    lon = models.FloatField()
 
-	# for additional urls (Wikipedia...)
-	url = models.URLField()
+    # for additional urls (Wikipedia...)
+    url = models.URLField()
 
-class User(models.Model):
-	name = models.CharField(max_length=100)
+class Player(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.URLField()
+    # import pdb; pdb.set_trace()
 
 class Hint(models.Model):
-	text = models.TextField()
-	place = models.ForeignKey(Place)
-	
+    text = models.TextField()
+    place = models.ForeignKey(Place)
+

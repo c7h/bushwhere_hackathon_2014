@@ -2,6 +2,7 @@
 
 from models import User, Place, Hint
 from rest_framework import viewsets, status
+from models import Player, Place, Hint
 from serializers import UserSerializer, PlaceSerializer, HintSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -11,7 +12,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all()
+    queryset = Player.objects.all()
     serializer_class = UserSerializer
 
 
