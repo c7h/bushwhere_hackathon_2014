@@ -1,6 +1,6 @@
 from django.contrib import admin
-from polls.models import Place, User, Hint
+from .models import Place, User, 
 
-admin.site.register(Places)
+admin.site.register(Place)
 admin.site.register(User)
 admin.site.register(Hint)
