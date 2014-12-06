@@ -47,3 +47,13 @@ def next_place(request):
         serializer = PlaceSerializer(data)
         return Response(serializer.data)
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def visit(request):
+    """
+    Get the next place for a player to visit
+    """
+    player = request.POST.get('player')
+    place = request.POST.get('place')
+    Visit(player_id=long(player), place_id=long(place)).save()
+    return Response(status=status.HTTP_200_OK)
