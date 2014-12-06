@@ -9,12 +9,12 @@ class Place(models.Model):
 	lon = models.FloatField()
 
 	# for additional urls (Wikipedia...)
-	url = models.URLfield()
+	url = models.URLField()
 
-class User(model.Model):
+class User(models.Model):
 	name = models.CharField(max_length=100)
 
 class Hint(models.Model):
 	text = models.TextField()
 	place = models.ForeignKey(Place)
-		
+	
