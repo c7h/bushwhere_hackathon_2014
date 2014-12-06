@@ -16,6 +16,11 @@ class Player(models.Model):
     image = models.URLField()
     # import pdb; pdb.set_trace()
 
+
+class Visit(models.Model):
+    player = models.ForeignKey(Player)
+    place = models.ForeignKey(Place)
+
 class Hint(models.Model):
     text = models.TextField()
     place = models.ForeignKey(Place)
