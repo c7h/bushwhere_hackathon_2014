@@ -1,16 +1,33 @@
 from django.db import models
 
-class Place(models.Model):
+class Mission(models.Model):
+    '''a Mission is a collection of Places in a strict order'''
     name = models.CharField(max_length=100)
+
+    # describe your mission here:
+    description = models.TextField()
+
+    # the list of the Places!
+    missions = models.ManyToManyField('Place', db_table='mission_place_partof')
+
+class Place(models.Model):
+    '''a unique place - can be part of many missions'''
+    name = models.CharField(max_length=100)
+
+    # coordinates:
     lat = models.FloatField()
     lon = models.FloatField()
-    url = models.URLField()  # for additional urls (Wikipedia...)
+
+    # for additional urls (Wikipedia...)
+    url = models.URLField()
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
     image = models.URLField()
+    #@TODO: player plays missions (many-to-many)
 
 class Visit(models.Model):
+    #@TODO: auto-added Timestamp
     player = models.ForeignKey(Player)
     place = models.ForeignKey(Place)
 
