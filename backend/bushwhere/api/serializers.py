@@ -5,19 +5,19 @@ from rest_framework import serializers
 class PlayerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Player
-        fields = ('name', 'image')
+        fields = ('id','name', 'image')
 
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
-        fields = ('name', 'lat', 'lon', 'url')
+        fields = ('id', 'name', 'lat', 'lon', 'url')
 
 
 class HintSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Hint
-        fields = ('text', 'place')
+        fields = ('id', 'text', 'place')
 
 class VisitSerializer(serializers.ModelSerializer):
     class Meta:

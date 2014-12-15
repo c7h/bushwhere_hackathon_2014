@@ -1,4 +1,7 @@
 from django.db import models
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Mission(models.Model):
     '''a Mission is a collection of Places in a strict order'''
@@ -30,6 +33,9 @@ class Place(models.Model):
 class Player(models.Model):
     name = models.CharField(max_length=100)
     image = models.URLField()
+
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
     #@TODO: player plays missions (many-to-many)
 
     def __str__(self):
