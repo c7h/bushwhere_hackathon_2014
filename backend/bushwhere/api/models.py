@@ -1,7 +1,7 @@
 from django.db import models
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('api.information')
 
 class Mission(models.Model):
     '''a Mission is a collection of Places in a strict order'''
@@ -45,6 +45,10 @@ class Visit(models.Model):
     #@TODO: auto-added Timestamp
     player = models.ForeignKey(Player)
     place = models.ForeignKey(Place)
+
+    def save(self, *args, **kwargs):
+        super(Visit, self).save(*args, **kwargs)
+        logger.info('Player %s visited Place %s' % (self.player.name, self.place.name))
 
     def __str__(self):
         return "<Visit %i>" % self.id
