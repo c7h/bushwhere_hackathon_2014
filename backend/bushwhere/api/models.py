@@ -8,7 +8,7 @@ class Mission(models.Model):
     description = models.TextField()
 
     # the list of the Places!
-    missions = models.ManyToManyField('Place', db_table='mission_place_partof')
+    places = models.ManyToManyField('Place', db_table='mission_place_partof')
 
     def __str__(self):
         return "<Mission %s>" % self.name

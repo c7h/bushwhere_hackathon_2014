@@ -1,37 +1,44 @@
-from models import Player, Place, Hint, Visit
+from models import Player, Place, Hint, Visit, Mission
 from rest_framework import viewsets, status
-from serializers import PlayerSerializer, PlaceSerializer, HintSerializer, VisitSerializer
+from serializers import PlayerSerializer, PlaceSerializer, HintSerializer, VisitSerializer, MissionSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import path_finder
 
 class PlayerViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows players to be viewed or edited.
     """
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer
 
 class PlaceViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows places to be viewed or edited.
     """
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
 
 class HintViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows hints to be viewed or edited.
     """
     queryset = Hint.objects.all()
     serializer_class = HintSerializer
 
 class VisitViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows visits to be viewed or edited.
     """
     queryset = Visit.objects.all()
     serializer_class = VisitSerializer
+
+class MissionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows missions to be viewed or edited.
+    """
+    queryset = Mission.objects.all()
+    serializer_class = MissionSerializer
 
 @api_view(['GET'])
 def next_place(request):

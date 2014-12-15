@@ -1,4 +1,4 @@
-from models import Place, Player, Hint, Visit
+from models import Place, Player, Hint, Visit, Mission
 from rest_framework import serializers
 
 
@@ -23,3 +23,9 @@ class VisitSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Visit
         fields = ('player', 'place')
+
+class MissionSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+       model = Mission
+       fields = ('id', 'name', 'description', 'places')
+            
