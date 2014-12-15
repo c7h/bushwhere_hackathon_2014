@@ -19,7 +19,7 @@ class HintSerializer(serializers.HyperlinkedModelSerializer):
         model = Hint
         fields = ('text', 'place')
 
-class VisitSerializer(serializers.HyperlinkedModelSerializer):
+class VisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visit
         fields = ('player', 'place')
