@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractBaseUser
 import logging
 
 logger = logging.getLogger('api.information')
@@ -30,13 +31,16 @@ class Place(models.Model):
     def __str__(self):
         return '<Place %s>' % self.name
 
-class Player(models.Model):
-    name = models.CharField(max_length=100)
+class Player(AbstractBaseUser):
+    name = models.CharField(max_length=40, unique=True)
     image = models.URLField()
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     #@TODO: player plays missions (many-to-many)
+
+    USERNAME_FIELD = 'name'
+    # REQUIRED_FIELDS = []
 
     def __str__(self):
         return "<Player %i>" % self.id
