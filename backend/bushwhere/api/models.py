@@ -54,7 +54,7 @@ class Visit(models.Model):
     def save(self, *args, **kwargs):
         super(Visit, self).save(*args, **kwargs)
         # logging
-        logger.info('Player %s visited Place %s' % (self.player.name, self.place.name))
+        logger.info('Player %s visited Place %s' % (self.player, self.place.name))
 
     def __unicode__(self):
         return "<Visit %i>" % self.id
