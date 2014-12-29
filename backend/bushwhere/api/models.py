@@ -14,7 +14,7 @@ class Mission(models.Model):
     # the list of the Places!
     places = models.ManyToManyField('Place', db_table='mission_place_partof')
 
-    def __str__(self):
+    def __unicode__(self):
         return "<Mission %s>" % self.name
 
 class Place(models.Model):
@@ -28,7 +28,7 @@ class Place(models.Model):
     # for additional urls (Wikipedia...)
     url = models.URLField()
 
-    def __str__(self):
+    def __unicode__(self):
         return '<Place %s>' % self.name
 
 class Player(models.Model):
@@ -43,7 +43,7 @@ class Player(models.Model):
 
     #@TODO: player plays missions Field
 
-    def __str__(self):
+    def __unicode__(self):
         return "<Player %i>" % self.id
 
 class Visit(models.Model):
@@ -56,13 +56,13 @@ class Visit(models.Model):
         # logging
         logger.info('Player %s visited Place %s' % (self.player.name, self.place.name))
 
-    def __str__(self):
+    def __unicode__(self):
         return "<Visit %i>" % self.id
 
 class Hint(models.Model):
     text = models.TextField()
     place = models.ForeignKey(Place, related_name='hints')
 
-    def __str__(self):
+    def __unicode__(self):
         return "<Hint %05i for %s>" % (self.id, self.place.name)
 
