@@ -1,5 +1,5 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
 import logging
 
 logger = logging.getLogger('api.information')
@@ -31,16 +31,17 @@ class Place(models.Model):
     def __str__(self):
         return '<Place %s>' % self.name
 
-class Player(AbstractBaseUser):
-    name = models.CharField(max_length=40, unique=True)
+class Player(models.Model):
+    # link to the User-Model
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+
+    # addition Informations
     image = models.URLField()
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    #@TODO: player plays missions (many-to-many)
 
-    USERNAME_FIELD = 'name'
-    # REQUIRED_FIELDS = []
+    #@TODO: player plays missions Field
 
     def __str__(self):
         return "<Player %i>" % self.id
@@ -52,6 +53,7 @@ class Visit(models.Model):
 
     def save(self, *args, **kwargs):
         super(Visit, self).save(*args, **kwargs)
+        # logging
         logger.info('Player %s visited Place %s' % (self.player.name, self.place.name))
 
     def __str__(self):
@@ -59,7 +61,7 @@ class Visit(models.Model):
 
 class Hint(models.Model):
     text = models.TextField()
-    place = models.ForeignKey(Place)
+    place = models.ForeignKey(Place, related_name='hints')
 
     def __str__(self):
         return "<Hint %05i for %s>" % (self.id, self.place.name)
