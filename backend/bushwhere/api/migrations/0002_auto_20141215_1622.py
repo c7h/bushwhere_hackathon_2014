@@ -28,6 +28,5 @@ class Migration(migrations.Migration):
             model_name='player',
             name='name',
             field=models.CharField(unique=True, max_length=40),
-            preserve_default=True,
         ),
     ]

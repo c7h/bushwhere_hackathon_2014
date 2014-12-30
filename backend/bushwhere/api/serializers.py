@@ -21,6 +21,7 @@ class HintSerializer(serializers.HyperlinkedModelSerializer):
         model = Hint
         fields = ('id', 'text')
 
+
 class PlaceSerializer(serializers.ModelSerializer):
     hints = HintSerializer(read_only=False, many=True)
 

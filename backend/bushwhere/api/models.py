@@ -36,7 +36,7 @@ class Player(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
     # addition Informations
-    image = models.URLField()
+    image = models.ImageField(upload_to='profilepictures')
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
