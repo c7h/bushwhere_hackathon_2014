@@ -4,9 +4,15 @@ from rest_framework import serializers
 
 
 class UserSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
     class Meta:
         model = User
-        fields =  ('username', 'first_name', 'last_name' ,'email')
+        fields =  ('username', 'first_name', 'last_name' ,'email', 'image')
+
+    def get_image(self, obj):
+        return obj.player.image
+
 
 class PlayerSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=False)
@@ -39,4 +45,4 @@ class MissionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
        model = Mission
        fields = ('id', 'name', 'description', 'places')
-            
+
